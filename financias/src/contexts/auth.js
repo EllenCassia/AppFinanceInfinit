@@ -26,9 +26,22 @@ function AuthProvider({children}){
       setLoadingAuth(false);
     }
   }
-
+  const signIn = async (email, senha) => {
+    setLoadingAuth(true);
+    try {
+      const response = await api.post('/login', {
+        email: email,
+        password: senha,
+      })
+      setUser(response.data.user);
+      setLoadingAuth(false);
+    } catch (error) {
+      console.log(error);
+      setLoadingAuth(false);
+    }
+  }
   return(
-    <AuthContext.Provider value={{ signed: !!user,user,signUp,loadingAuth}}>
+    <AuthContext.Provider value={{ signed: !!user,user,signUp,loadingAuth,signIn}}>
       {children}
     </AuthContext.Provider>
   )
