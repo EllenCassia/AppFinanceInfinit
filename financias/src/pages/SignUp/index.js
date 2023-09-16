@@ -1,11 +1,25 @@
-import React from 'react';
-import { Platform, Text} from 'react-native';
+import React, {useState} from 'react';
+import { ActivityIndicator, Platform } from 'react-native';
 
 import { Background,Container,AreaInput,Input,SubmitButton,SubmitText,Logo } from '../SignIn/styles';
 import { AuthContext } from '../../contexts/auth'; 
 
 export default function SignUp(){
-  const { signed } = React.useContext(AuthContext);
+
+  const { signUp,loadingAuth } = React.useContext(AuthContext);
+
+  const [nome, setNome] = useState('');
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
+  
+  function handleSignUp(){
+    if(nome == '' || email == '' || senha == ''){
+      alert('Preencha todos os campos');
+      return;
+    }else{
+      signUp(nome, email, senha);
+    }
+  }
 
   return(
     <Background>
@@ -21,6 +35,8 @@ export default function SignUp(){
             placeholder="Nome"
             autoCorrect={false}
             autoCapitalize="none"
+            value={nome}
+            onChangeText={(text) => setNome(text)}
           />
         </AreaInput>
         <AreaInput>
@@ -28,6 +44,8 @@ export default function SignUp(){
             placeholder="Email"
             autoCorrect={false}
             autoCapitalize="none"
+            value={email}
+            onChangeText={(text) => setEmail(text)}
           />
         </AreaInput>
         <AreaInput>
@@ -35,10 +53,17 @@ export default function SignUp(){
             placeholder="Senha"
             autoCorrect={false}
             autoCapitalize="none"
+            value={senha}
+            onChangeText={(text) => setSenha(text)}
+            secureTextEntry={true}
           />
         </AreaInput>
-      <SubmitButton>
-        <SubmitText>Cadastrar</SubmitText>
+      <SubmitButton onPress= {handleSignUp}>
+        {loadingAuth ? (
+          <ActivityIndicator size={28} color="#FFF"/>
+        ) : (
+          <SubmitText>Cadastrar</SubmitText>
+        )}
       </SubmitButton>
         </Container>
     </Background>

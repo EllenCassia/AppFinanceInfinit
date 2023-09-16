@@ -17,6 +17,7 @@ import { useNavigation } from '@react-navigation/native';
 
 export default function SignIn(){
   const navigation = useNavigation();
+
   return(
     <Background>
       <Container
@@ -36,7 +37,7 @@ export default function SignIn(){
             placeholder="Senha"
           />
         </AreaInput>
-        <SubmitButton>
+        <SubmitButton onPress={() => navigation.navigate('Home\\index.js')}>
             <SubmitText>Acessar</SubmitText>
         </SubmitButton>
         <Link onPress={() => navigation.navigate('SignUp')}>
