@@ -14,14 +14,17 @@ import {
 } from './styles';
 
 import { useNavigation } from '@react-navigation/native';
+import { AuthContext } from '../../contexts/auth'; 
 
 export default function SignIn(){
   const navigation = useNavigation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const { signIn } = React.useContext(AuthContext);
+
   function handleSignIn(){
-    alert('Logado com sucesso!');
+    signIn(email, password);
   }
   
   return(
