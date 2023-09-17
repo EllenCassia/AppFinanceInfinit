@@ -1,0 +1,25 @@
+
+import styled from "styled-components/native";
+
+export const Container = styled.SafeAreaView`
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 30px;   
+    margin-bottom: 15px;
+    margin-left: 15px;
+    width: 95%;
+    max-height: 50px;
+`;
+
+export const Title = styled.Text`
+    font-size: 23px;
+    color: #131313;
+    font-weight: bold;
+    margin-left: 8px;
+`;
+
+export const ButtonMenu = styled.TouchableOpacity`
+    justify-content: center;
+    align-items: center;
+`;
