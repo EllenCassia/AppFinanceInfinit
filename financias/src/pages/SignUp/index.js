@@ -58,7 +58,7 @@ export default function SignUp(){
             secureTextEntry={true}
           />
         </AreaInput>
-      <SubmitButton onPress= {handleSignUp}>
+      <SubmitButton activeOpacity={0.8} onPress= {handleSignUp}>
         {loadingAuth ? (
           <ActivityIndicator size={28} color="#FFF"/>
         ) : (
